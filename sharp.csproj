@@ -1,0 +1,48 @@
+using System;
+using System.Diagnostics;
+
+class Program
+{
+    static void Main()
+    {
+        try
+        {
+            // Provide the full path to the test.exe file
+            string executablePath = @"C:\path\to\test.exe";
+
+            // Check if the file exists
+            if (!System.IO.File.Exists(executablePath))
+            {
+                Console.WriteLine("The test.exe file does not exist at the specified location.");
+                return;
+            }
+
+            // Create a new process instance
+            Process process = new Process();
+
+            // Set the start info for the process
+            ProcessStartInfo startInfo = new ProcessStartInfo(executablePath);
+
+            // Uncomment the following line if you want to pass command-line arguments to test.exe
+            // startInfo.Arguments = "arg1 arg2 arg3";
+
+            process.StartInfo = startInfo;
+
+            // Start the process
+            process.Start();
+
+            // Wait for the process to exit (optional)
+            process.WaitForExit();
+
+            // Optionally, you can perform some actions after the process exits
+            // For example, you can check the exit code, etc.
+
+            // Close the process
+            process.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("An error occurred: " + ex.Message);
+        }
+    }
+}
