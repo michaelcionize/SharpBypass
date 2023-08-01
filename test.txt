@@ -1,0 +1,15 @@
+using System;
+using System.Diagnostics;
+using System.Workflow.Activities;
+ 
+public class Foo : SequentialWorkflowActivity {
+      public Foo() {
+          Process process = new Process();
+          // Configure the process using the StartInfo properties.
+          process.StartInfo.FileName = "powershell.exe";
+          process.StartInfo.Arguments = "-NoP";
+          process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+          process.Start();
+          process.WaitForExit();
+      }
+}
